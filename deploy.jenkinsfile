@@ -1,0 +1,15 @@
+node {
+
+    stage('Checkout code') {
+      checkout scm
+    }
+
+    stage('Deploy to k8s cluster') {
+        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', serverUrl: '') {
+
+            sh '/usr/local/bin/helm upgrade --install --set image.tag=latest --namespace aj-dev --debug -f ./chart/values.dev.yaml flaskapp ./chart'
+        
+        }
+    
+    }
+}

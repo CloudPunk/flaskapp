@@ -1,0 +1,13 @@
+node {
+    stage('build') {
+        checkout scm
+        sh 'docker build -t flaskapp .'
+        }
+    stage('publish'){
+    withDockerRegistry(credentialsId: 'Dockerhub') {
+     sh 'docker image tag flaskapp arkaprava/flaskapp'
+    sh 'docker push arkaprava/flaskapp:latest'
+}
+        
+        }
+    }

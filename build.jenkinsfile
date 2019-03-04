@@ -5,8 +5,8 @@ node {
         }
     stage('publish'){
     withDockerRegistry(credentialsId: 'Dockerhub') {
-     sh 'docker image tag flaskapp arkaprava/flaskapp:1'
-    sh 'docker push arkaprava/flaskapp:1'
+     sh 'docker image tag flaskapp arkaprava/flaskapp:2'
+    sh 'docker push arkaprava/flaskapp:2'
 }
         
         }
